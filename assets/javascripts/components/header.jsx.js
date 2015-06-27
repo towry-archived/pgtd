@@ -5,6 +5,10 @@ export default class Header extends Component {
   constructor (props) {
     super(props);
 
+    this.state = {
+      user: null
+    }
+
     this.logoutHandler = this.logoutHandler.bind(this);
   }
 
@@ -15,14 +19,23 @@ export default class Header extends Component {
     User.logout();
   }
 
+  componentWillMount () {
+    User.info(function (info) {
+      this.setState({
+        user: info
+      })
+    }.bind(this));
+  }
+
   render () {
     let menus;
+    let { user } = this.state;
 
-    if (User.logged()) {
+    if (user) {
       menus = (
         <ul className="menus">
-          <li><a href="#">Hi user1</a></li>
-          <li><a onClick={this.logoutHandler} href="#logout">Logout</a></li>
+          <li><a href={"#/user/" + user.id}>{ user.name }</a></li>
+          <li><a onClick={this.logoutHandler} href="#/logout">Logout</a></li>
         </ul>
       );
     } else {

@@ -78,6 +78,7 @@ module Pgtd
       slim :index
     end
 
+    # Api for login etc.
     get '/login' do 
       redirect to('/auth/github'), 303
     end
@@ -92,7 +93,7 @@ module Pgtd
       redirect to('/'), 303
     end
 
-    # Api for creating board
+    # Api for manipulating boards
     get '/api/board/create' do 
       content_type :json 
       login_required
@@ -100,6 +101,27 @@ module Pgtd
       name = params['name']
       board = Board.create name
       board.to_json
+    end
+
+    get '/api/board/fetch_all' do 
+      content_type :json 
+
+      start = params['start'] || 0
+      count = params['count'] || 20
+
+      if start < 0 
+        start = 0
+        count = 20
+      end
+      if count < 20 or count > 40
+        count = 20
+      end
+      begin
+        boards = Board.offset(start).limit(count).all
+      rescue ActiveRecord::RecordNotFound => e 
+        boards = "[]";
+      end
+      boards.to_json
     end
 
     # Return a message that from this system
@@ -111,6 +133,7 @@ module Pgtd
       resp.to_json
     end
 
+    # Sesstion
     post '/api/session/logout' do 
       @current_user = nil 
       session[:user] = nil 
@@ -131,8 +154,7 @@ module Pgtd
 
     get '/api/user/info' do 
       resp_payload(CODES[:success], MESSAGES[:success], {:value => {
-        name: 'Towry',
-        age: 23
+        name: 'Towry'
       }}).to_json
     end
   end

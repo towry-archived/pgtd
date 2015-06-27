@@ -3,13 +3,12 @@ html
   head
     title PGTD - Public GTD
     link href="/css/application.css" type="text/css" rel="stylesheet"
-  body
     - if current_user
       - uid = current_user.id
     - else
       - uid = -1
     javascript:
-      var _pgtd = window.pgtd || {};
-      _pgtd._uid = #{{uid}};
+      var _pgtd = window.pgtd || {}; _pgtd._uid = #{{uid}};
+  body
     == yield
     script src="/js/application.js" type="text/javascript"
