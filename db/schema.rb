@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150614144657) do
+ActiveRecord::Schema.define(version: 20150628094204) do
 
   create_table "boards", force: :cascade do |t|
     t.string   "name"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20150614144657) do
     t.string   "name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "board"
+    t.integer  "board_id"
     t.boolean  "checked"
     t.datetime "due"
     t.integer  "assigner"

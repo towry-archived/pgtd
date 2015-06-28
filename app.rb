@@ -7,12 +7,14 @@ require './models/all'
 
 CODES = {
   :login_required => 1,
-  :success => 200
+  :success => 200,
+  :fail => 400
 }
 
 MESSAGES = {
   :login_required => "You need to login to process the action",
-  :success => "success"
+  :success => "success",
+  :fail => "Bad request"
 }
 
 module Sinatra
@@ -101,6 +103,28 @@ module Pgtd
       name = params['name']
       board = Board.create name
       board.to_json
+    end
+
+    get '/api/board/fetch_one' do 
+      content_type :json 
+
+      id = params['id']
+      if not id 
+        return resp_payload(CODES[:fail], MESSAGES[:fail]).to_json
+      end
+      begin
+        board = Board.find(id)
+        lists = List.all().where(lists: {board_id: id})
+        
+        return resp_payload(CODES[:success], MESSAGES[:success], {
+          data: {
+            board: board.to_json,
+            lists: lists.to_json
+          }
+        }).to_json
+      rescue ActiveRecord::RecordNotFound => e 
+        return resp_payload(404, "Not found").to_json
+      end
     end
 
     get '/api/board/fetch_all' do 

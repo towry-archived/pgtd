@@ -48,7 +48,7 @@ export default class Header extends Component {
 
     return (
       <div className="header">
-        <h1 className="logo"><span className='word-p'>P</span>GTD</h1>
+        <h1 className="logo"><a href="/#" title="Home"><span className='word-p'>P</span>GTD</a></h1>
         { menus }
       </div>
     );

@@ -53,9 +53,9 @@ function get (url, data, async = true) {
         xhr.onreadystatechange = null;
         if (xhr.status === 200) {
           let data = xhr.responseText;
-          res(JSON.parse(data));
+          res(JSON.parse(data), xhr);
         } else {
-          rej({error: `${xhr.status}: ${xhr.statusText}`}); 
+          rej({error: `${xhr.status}: ${xhr.statusText}`}, xhr); 
         }
       }
     }
@@ -85,9 +85,9 @@ function post (url, data, async = true) {
         xhr.onreadystatechange = null;
         if (xhr.status === 200) {
           let data = xhr.responseText;
-          res(JSON.parse(data));
+          res(JSON.parse(data), xhr);
         } else {
-          rej({error: `${xhr.status}: ${xhr.statusText}`});
+          rej({error: `${xhr.status}: ${xhr.statusText}`}, xhr);
         }
       }
     }

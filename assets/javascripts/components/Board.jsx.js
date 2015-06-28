@@ -12,7 +12,7 @@ export default class Board extends Component {
 
     return (
       <div className="board">
-        { board.name } created by { board.creator }
+        <a href={"#/board/" + board.id }>{ board.name }</a> created by <span className="creator">{ board.creator }</span>
       </div>
     );
   }
