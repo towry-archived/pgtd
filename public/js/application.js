@@ -137,15 +137,15 @@
 
 	var _componentsFooterJsx2 = _interopRequireDefault(_componentsFooterJsx);
 
-	var _componentsUserProfileContainerJsx = __webpack_require__(169);
+	var _componentsUserProfileContainerJsx = __webpack_require__(168);
 
 	var _componentsUserProfileContainerJsx2 = _interopRequireDefault(_componentsUserProfileContainerJsx);
 
-	var _componentsBoardDetailContainerJsx = __webpack_require__(170);
+	var _componentsBoardDetailContainerJsx = __webpack_require__(169);
 
 	var _componentsBoardDetailContainerJsx2 = _interopRequireDefault(_componentsBoardDetailContainerJsx);
 
-	__webpack_require__(168);
+	__webpack_require__(172);
 
 	/**
 	 * App class
@@ -21253,29 +21253,6 @@
 /* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-	var _apiUser = __webpack_require__(163);
-
-	var _apiUser2 = _interopRequireDefault(_apiUser);
-
-	(function () {
-	  if (!window._pgtd) {
-	    throw new Error("Losing important config");
-	  }
-
-	  var pgtd = window._pgtd;
-	  var uid = pgtd._uid || -1;
-
-	  new _apiUser2["default"](uid);
-	})();
-
-/***/ },
-/* 169 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
@@ -21361,7 +21338,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 170 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21424,11 +21401,11 @@
 
 	var _supportsAjax2 = _interopRequireDefault(_supportsAjax);
 
-	var _jsx = __webpack_require__(171);
+	var _jsx = __webpack_require__(170);
 
 	var _jsx2 = _interopRequireDefault(_jsx);
 
-	var _boardListJsx = __webpack_require__(172);
+	var _boardListJsx = __webpack_require__(171);
 
 	var _boardListJsx2 = _interopRequireDefault(_boardListJsx);
 
@@ -21529,7 +21506,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 171 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21624,19 +21601,19 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 172 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
+	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
 
 	var _createClass = (function () {
 	  function defineProperties(target, props) {
 	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ('value' in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
 	    }
 	  }return function (Constructor, protoProps, staticProps) {
 	    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
@@ -21653,7 +21630,7 @@
 	      } else {
 	        _x = parent;_x2 = property;_x3 = receiver;_again = true;continue _function;
 	      }
-	    } else if ("value" in desc) {
+	    } else if ('value' in desc) {
 	      return desc.value;
 	    } else {
 	      var getter = desc.get;if (getter === undefined) {
@@ -21664,18 +21641,18 @@
 	};
 
 	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { "default": obj };
+	  return obj && obj.__esModule ? obj : { 'default': obj };
 	}
 
 	function _classCallCheck(instance, Constructor) {
 	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
+	    throw new TypeError('Cannot call a class as a function');
 	  }
 	}
 
 	function _inherits(subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	  if (typeof superClass !== 'function' && superClass !== null) {
+	    throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass);
 	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) subClass.__proto__ = superClass;
 	}
 
@@ -21687,25 +21664,58 @@
 	  function List(props) {
 	    _classCallCheck(this, List);
 
-	    _get(Object.getPrototypeOf(List.prototype), "constructor", this).call(this, props);
+	    _get(Object.getPrototypeOf(List.prototype), 'constructor', this).call(this, props);
+
+	    this.onListClick = this.onListClick.bind(this);
 	  }
 
 	  _inherits(List, _Component);
 
 	  _createClass(List, [{
-	    key: "render",
+	    key: 'onListClick',
+	    value: function onListClick(e) {
+	      // show the dialog
+	      e.preventDefault();
+	      e.stopPropagation();
+	      console.log('hi');
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      var list = this.props.list;
 
-	      return _react2["default"].createElement("div", { className: "list" }, _react2["default"].createElement("div", { className: "list-header" }, _react2["default"].createElement("h3", { className: "list-name" }, list.name)), _react2["default"].createElement("div", { className: "list-body" }), _react2["default"].createElement("div", { className: "list-footer" }));
+	      return _react2['default'].createElement('div', { onClick: this.onListClick, className: 'list' }, _react2['default'].createElement('div', { className: 'list-header' }, _react2['default'].createElement('h3', { className: 'list-name' }, list.name)), _react2['default'].createElement('div', { className: 'list-body' }), _react2['default'].createElement('div', { className: 'list-footer' }));
 	    }
 	  }]);
 
 	  return List;
 	})(_react.Component);
 
-	exports["default"] = List;
-	module.exports = exports["default"];
+	exports['default'] = List;
+	module.exports = exports['default'];
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	var _apiUser = __webpack_require__(163);
+
+	var _apiUser2 = _interopRequireDefault(_apiUser);
+
+	(function () {
+	  if (!window._pgtd) {
+	    throw new Error("Losing important config");
+	  }
+
+	  var pgtd = window._pgtd;
+	  var uid = pgtd._uid || -1;
+
+	  new _apiUser2["default"](uid);
+	})();
 
 /***/ }
 /******/ ]);

@@ -1,3 +1,7 @@
+html, body {
+	padding: 0;
+	margin: 0;
+}
 
 a, input, textarea {
   outline: 0;
@@ -8,10 +12,30 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 15px;
+  color: #67829d;
+}
+
+a {
+	color: $link-color; 
+	text-decoration: none;
+	border-bottom: 1px solid transparent;
+	&:hover {
+		background-color: lighten($link-color, 30%);
+		border-bottom-color: lighten($link-color, 15%);
+	}
 }
 
 .container {
-  width: 760px;
+  width: 660px;
   margin: 0 auto;
 }
 
+.footer {
+	margin-top: 40px;
+	text-align: center;
+	color: #8393a9;
+}
+
+.creator {
+	color: #ff9f00;
+}
